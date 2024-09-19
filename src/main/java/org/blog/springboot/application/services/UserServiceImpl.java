@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,8 +27,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById() {
+    public void deleteById(String id) {
+        if (!repository.existsById(id))
+            throw new ObjectNotFoundException("User not found with id: " + id);
 
+        repository.deleteById(id);
     }
 
     @Override
@@ -47,11 +51,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) {
-        return null;
+        User newUser = repository.findById(user.getId())
+                .orElseThrow(() -> new ObjectNotFoundException("User not found with id: " + user.getId()));
+
+        updateData(newUser, user);
+        return repository.save(newUser);
     }
 
     @Override
     public List<User> update(List<User> users) {
         return List.of();
+    }
+
+    private void updateData(User newUser, User user) {
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
     }
 }
