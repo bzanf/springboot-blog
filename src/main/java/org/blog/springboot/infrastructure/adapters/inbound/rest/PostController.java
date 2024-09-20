@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,14 +24,33 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "searchTitle", defaultValue = "") String text) {
-        if (text.isEmpty()) {
+    public ResponseEntity<List<Post>> findByTitleOrTextFields(
+            @RequestParam(value = "searchTitle", defaultValue = "") String title,
+            @RequestParam(value = "searchTextFields", defaultValue = "") String textFields
+    ) {
+        if (title.isEmpty() && textFields.isEmpty()) {
             return ResponseEntity.ok(List.of());
         }
 
-        text = URL.decodeParam(text);
-        List<Post> posts = service.findByTitle(text);
-        return ResponseEntity.ok(posts);
+        List<Post> posts1 = new ArrayList<>();
+        if (!title.isEmpty()) {
+            title = URL.decodeParam(title);
+            posts1 = service.findByTitle(title);
+        }
+
+        List<Post> posts2 = new ArrayList<>();
+        if (!textFields.isEmpty()) {
+            textFields = URL.decodeParam(textFields);
+            posts2 = service.findByTextFields(textFields);
+        }
+
+        if (title.isEmpty() || textFields.isEmpty()) {
+            posts1.addAll(posts2);
+            return ResponseEntity.ok(posts1);
+        }  else {
+            posts1.retainAll(posts2);
+            return ResponseEntity.ok(posts1);
+        }
     }
 
 }
