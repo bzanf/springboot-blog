@@ -3,10 +3,11 @@ package org.blog.springboot.application.ports.outbound;
 import org.blog.springboot.domain.entities.Post;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostRepository {
-//    List<Post> findAll();
-//    Optional<Post> findById(String id);
+
+    Optional<Post> findById(String id);
 //    boolean existsById(String s);
 //
 //    Post insert(Post post);
