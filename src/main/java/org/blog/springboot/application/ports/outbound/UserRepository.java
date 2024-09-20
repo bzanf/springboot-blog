@@ -12,7 +12,7 @@ public interface UserRepository {
     boolean existsById(String s);
 
     User insert(User user);
-    <T extends User> List<T> insert(Iterable<T> users);
+    <S extends User> List<S> insert(Iterable<S> users);
 
     User save(User user);
 
@@ -20,3 +20,4 @@ public interface UserRepository {
     void deleteAll();
 
 }
+

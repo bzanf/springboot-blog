@@ -3,7 +3,6 @@ package org.blog.springboot.application.ports.inbound;
 import org.blog.springboot.domain.entities.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -17,6 +16,5 @@ public interface UserService {
     List<User> insert(List<User> users);
 
     User update(User user);
-    List<User> update(List<User> users);
 
 }

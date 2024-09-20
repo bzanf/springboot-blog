@@ -1,8 +1,8 @@
 package org.blog.springboot.application.services;
 
 import org.blog.springboot.application.ports.inbound.UserService;
-import org.blog.springboot.domain.entities.User;
 import org.blog.springboot.application.ports.outbound.UserRepository;
+import org.blog.springboot.domain.entities.User;
 import org.blog.springboot.domain.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found with id: " + id));
+        return repository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("User not found with id: " + id));
     }
 
     @Override
@@ -55,11 +56,6 @@ public class UserServiceImpl implements UserService {
 
         updateData(newUser, user);
         return repository.save(newUser);
-    }
-
-    @Override
-    public List<User> update(List<User> users) {
-        return List.of();
     }
 
     private void updateData(User newUser, User user) {

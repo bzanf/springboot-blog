@@ -1,4 +1,4 @@
-package org.blog.springboot.infrastructure.adapters.outbound.persistence.mongodb;
+package org.blog.springboot.infrastructure.adapters.outbound.persistence.mongodb.repositories;
 
 import org.blog.springboot.application.ports.outbound.PostRepository;
 import org.blog.springboot.domain.entities.Post;
