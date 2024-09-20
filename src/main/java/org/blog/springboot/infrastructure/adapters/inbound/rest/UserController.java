@@ -1,6 +1,7 @@
 package org.blog.springboot.infrastructure.adapters.inbound.rest;
 
 import org.blog.springboot.application.ports.inbound.UserService;
+import org.blog.springboot.domain.entities.Post;
 import org.blog.springboot.domain.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,20 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+        List<User> users = service.findAll();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> findById(@PathVariable String id) {
         User user = service.findById(id);
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPostsById(@PathVariable String id) {
+        User user = service.findById(id);
+        return ResponseEntity.ok(user.getPosts());
     }
 
     @PostMapping
