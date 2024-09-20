@@ -1,5 +1,6 @@
 package org.blog.springboot.domain.entities;
 
+import org.blog.springboot.domain.dto.UserSummary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,12 +20,12 @@ public class Post implements Serializable {
     private Instant moment;
     private String title;
     private String body;
-    private User author;
+    private UserSummary author;
 
     public Post() {
     }
 
-    public Post(String id, Instant moment, String title, String body, User author) {
+    public Post(String id, Instant moment, String title, String body, UserSummary author) {
         this.id = id;
         this.moment = moment;
         this.title = title;
@@ -64,11 +65,11 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public User getAuthor() {
+    public UserSummary getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(UserSummary author) {
         this.author = author;
     }
 

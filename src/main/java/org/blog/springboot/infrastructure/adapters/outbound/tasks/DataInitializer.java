@@ -2,6 +2,7 @@ package org.blog.springboot.infrastructure.adapters.outbound.tasks;
 
 import org.blog.springboot.application.ports.inbound.PostService;
 import org.blog.springboot.application.ports.inbound.UserService;
+import org.blog.springboot.domain.dto.UserSummary;
 import org.blog.springboot.domain.entities.Post;
 import org.blog.springboot.domain.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +31,23 @@ public class DataInitializer implements CommandLineRunner {
         User u3 = new User(null, "Samuel L. Jackson", "samuel@email.com");
         User u4 = new User(null, "Kurt Russell", "kurt@email.com");
 
+        userService.insert(Arrays.asList(u1, u2, u3, u4));
+
         Post p1 = new Post(
                 null,
                 Instant.now(),
                 "Building a RESTful API",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                u3
+                new UserSummary(u3)
         );
         Post p2 = new Post(
                 null,
                 Instant.now(),
                 "I'm playing God of War Ragnarök",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                u3
+                new UserSummary(u3)
         );
 
-        userService.insert(Arrays.asList(u1, u2, u3, u4));
         postService.insert(Arrays.asList(p1, p2));
     }
 }
