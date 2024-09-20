@@ -1,7 +1,5 @@
 package org.blog.springboot.infrastructure.adapters.outbound.tasks;
 
-import org.blog.springboot.application.ports.inbound.PostService;
-import org.blog.springboot.application.ports.inbound.UserService;
 import org.blog.springboot.application.ports.outbound.PostRepository;
 import org.blog.springboot.application.ports.outbound.UserRepository;
 import org.blog.springboot.domain.dto.UserSummary;
