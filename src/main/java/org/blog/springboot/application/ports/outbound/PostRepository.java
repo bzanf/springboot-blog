@@ -8,13 +8,9 @@ import java.util.Optional;
 public interface PostRepository {
 
     Optional<Post> findById(String id);
-//    boolean existsById(String s);
-//
-//    Post insert(Post post);
+    List<Post> findByTitleContainingIgnoreCase(String text);
+
     <T extends Post> List<T> insert(Iterable<T> posts);
-//
-//    Post save(Post post);
-//
-//    void deleteById(String id);
+
     void deleteAll();
 }

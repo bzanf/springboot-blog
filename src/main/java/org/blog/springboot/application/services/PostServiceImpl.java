@@ -20,4 +20,9 @@ public class PostServiceImpl implements PostService {
         return repository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found with id: " + id));
     }
+
+    @Override
+    public List<Post> findByTitle(String text) {
+        return repository.findByTitleContainingIgnoreCase(text);
+    }
 }

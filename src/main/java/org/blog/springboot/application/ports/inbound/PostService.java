@@ -7,5 +7,6 @@ import java.util.List;
 public interface PostService {
 
     Post findById(String id);
+    List<Post> findByTitle(String text);
 
 }
