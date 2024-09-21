@@ -22,7 +22,7 @@ Make sure you have the following installed:
 There are several ways to run a Spring Boot application on your local machine. One way is to execute the main method in the org.blog.springboot.Application class from your IDE.
 
 ## API
-The application will be available at the address: http://localhost:8080.
+The application will be available at the address: http://localhost:8080.<br>
 All available endpoints can be found at: org.blog.springboot.infrastructure.adapters.inbound.rest.* classes.
 
 Some available endpoints:
