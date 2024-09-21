@@ -35,7 +35,7 @@ Some available endpoints:
 Example body for updating a user:
 ```
 {
-    "name": "Robert de Niro",
+    "name": "Robert De Niro",
     "email": "robert@email.com"
 }
 ```
